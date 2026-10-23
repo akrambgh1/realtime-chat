@@ -1,0 +1,19 @@
+{
+  "name": "realtime-chat",
+  "version": "1.0.0",
+  "description": "Chatter: a real-time chat app with rooms, typing indicators and online users (Node.js, Express, Socket.io)",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "socket.io": "4.8.1"
+  },
+  "license": "MIT"
+}

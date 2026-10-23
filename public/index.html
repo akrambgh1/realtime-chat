@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatter — Real-time Chat</title>
+  <meta name="description" content="A real-time chat app with rooms, typing indicators and online users.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Login -->
+  <section id="login" class="login">
+    <form id="loginForm" class="login-card" autocomplete="off">
+      <div class="login-logo">💬</div>
+      <h1>Chatter</h1>
+      <p class="muted">Real-time chat rooms. Pick a name to start.</p>
+      <label class="field">
+        <span>Your name</span>
+        <input id="nameInput" maxlength="20" placeholder="e.g. Alex" required>
+      </label>
+      <label class="field">
+        <span>Room</span>
+        <select id="roomSelect"></select>
+      </label>
+      <p id="loginError" class="error" role="alert" hidden></p>
+      <button class="btn primary" type="submit">Join chat →</button>
+      <p class="tiny muted">Messages are kept in memory only and disappear when the server restarts.</p>
+    </form>
+  </section>
+
+  <!-- Chat -->
+  <div id="chat" class="chat" hidden>
+    <aside id="sidebar" class="sidebar">
+      <div class="side-head">
+        <span class="logo">💬 Chatter</span>
+        <span id="status" class="status online" title="Connected"></span>
+      </div>
+
+      <div class="side-section">
+        <div class="side-title">Rooms</div>
+        <ul id="roomList" class="room-list"></ul>
+        <form id="newRoomForm" class="new-room">
+          <input id="newRoomInput" maxlength="24" placeholder="+ New room" aria-label="New room name">
+        </form>
+      </div>
+
+      <div class="side-section grow">
+        <div class="side-title">Online here · <span id="userCount">0</span></div>
+        <ul id="userList" class="user-list"></ul>
+      </div>
+
+      <div class="me">
+        <span id="meAvatar" class="avatar"></span>
+        <span id="meName" class="me-name"></span>
+        <button id="logoutBtn" class="icon-btn" title="Leave" aria-label="Leave chat">⎋</button>
+      </div>
+    </aside>
+    <div id="scrim" class="scrim" hidden></div>
+
+    <main class="main">
+      <header class="room-head">
+        <button id="menuBtn" class="icon-btn menu-btn" aria-label="Open menu">☰</button>
+        <h2 id="roomTitle"># general</h2>
+        <span id="roomOnline" class="muted"></span>
+      </header>
+
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <button id="jumpBtn" class="jump" hidden>↓ New messages</button>
+
+      <div id="typing" class="typing" aria-live="polite"></div>
+
+      <form id="composer" class="composer" autocomplete="off">
+        <button type="button" id="emojiBtn" class="icon-btn" aria-label="Insert emoji">😊</button>
+        <div id="emojiPanel" class="emoji-panel" hidden></div>
+        <input id="messageInput" maxlength="500" placeholder="Message #general" aria-label="Message">
+        <button class="btn primary send" type="submit" aria-label="Send">➤</button>
+      </form>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
