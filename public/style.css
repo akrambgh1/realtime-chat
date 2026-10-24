@@ -79,8 +79,48 @@ button { cursor: pointer; }
 .user .dot { width: 8px; height: 8px; margin-left: auto; border-radius: 50%; background: var(--online); }
 .avatar { display: grid; place-items: center; width: 32px; height: 32px; flex-shrink: 0; border-radius: 10px; color: #fff; font-size: 0.75rem; font-weight: 800; }
 .avatar-space { width: 36px; flex-shrink: 0; }
-.me { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--border); }
-.me-name { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.me { display: flex; align-items: center; gap: 4px; padding: 10px 10px 10px 14px; border-top: 1px solid var(--border); }
+.me .avatar { margin-right: 6px; }
+.me-name { flex: 1; min-width: 0; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.me .icon-btn { width: 34px; height: 34px; font-size: 1rem; }
+
+/* Muted / deafened buttons get a red tint; icons are crossed out below */
+.icon-btn.off { background: color-mix(in srgb, var(--danger) 14%, transparent); }
+
+/* Voice channels */
+.voice-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.voice-channel { width: 100%; display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: none; border-radius: 10px; background: none; color: var(--muted); font-weight: 600; text-align: left; }
+.voice-channel:hover { background: var(--surface); color: var(--text); }
+.voice-channel.active { background: var(--surface-2); color: var(--text); }
+.speaker { font-size: 0.85rem; }
+.voice-members { list-style: none; margin: 2px 0 6px; padding: 0 0 0 26px; display: flex; flex-direction: column; gap: 2px; }
+.vm { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 8px; font-size: 0.85rem; color: var(--muted); }
+.vm .avatar { width: 24px; height: 24px; border-radius: 50%; font-size: 0.6rem; box-shadow: 0 0 0 2px transparent; transition: box-shadow 0.12s; }
+.vm.speaking .avatar { box-shadow: 0 0 0 2px var(--sidebar), 0 0 0 4px var(--online); }
+.vm.speaking .vm-name { color: var(--text); }
+.vm-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vicon { display: inline-grid; place-items: center; width: 18px; height: 18px; color: inherit; }
+.vicon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.vm .vicon { width: 15px; height: 15px; color: var(--muted); }
+.vm .vicon.struck { color: var(--danger); }
+.me .icon-btn .vicon { width: 19px; height: 19px; }
+.icon-btn.off { color: var(--danger); }
+.icon-btn.off .vicon::after, .vicon.struck::after { content: none; }
+.vicon.struck, .icon-btn.off .vicon { position: relative; }
+.vicon.struck::before, .icon-btn.off .vicon::before {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 2px; height: 120%;
+  background: var(--danger); border-radius: 2px; transform: translate(-50%, -50%) rotate(45deg);
+  box-shadow: 0 0 0 1.5px var(--sidebar);
+}
+
+/* "Voice Connected" panel */
+.voice-panel { display: flex; align-items: center; gap: 10px; margin: 0 10px 8px; padding: 10px 10px 10px 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); }
+.vp-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.vp-status { color: var(--online); font-weight: 700; font-size: 0.85rem; }
+.vp-status.warn { color: #fbbf24; }
+.vp-channel { color: var(--muted); font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.icon-btn.danger { color: var(--danger); }
+.icon-btn.danger:hover { background: color-mix(in srgb, var(--danger) 16%, transparent); }
 
 .main { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .room-head { display: flex; align-items: center; gap: 12px; height: 60px; padding: 0 20px; border-bottom: 1px solid var(--border); }

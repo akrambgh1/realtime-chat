@@ -48,14 +48,30 @@
         </form>
       </div>
 
+      <div class="side-section">
+        <div class="side-title">Voice channels</div>
+        <ul id="voiceList" class="voice-list"></ul>
+      </div>
+
       <div class="side-section grow">
         <div class="side-title">Online here · <span id="userCount">0</span></div>
         <ul id="userList" class="user-list"></ul>
       </div>
 
+      <!-- Shown while connected to a voice channel (like Discord's bottom-left panel) -->
+      <div id="voicePanel" class="voice-panel" hidden>
+        <div class="vp-info">
+          <span id="vpStatus" class="vp-status">Voice Connected</span>
+          <span id="vpChannel" class="vp-channel"></span>
+        </div>
+        <button id="vpLeave" class="icon-btn danger" title="Disconnect" aria-label="Disconnect from voice">📞</button>
+      </div>
+
       <div class="me">
         <span id="meAvatar" class="avatar"></span>
         <span id="meName" class="me-name"></span>
+        <button id="muteBtn" class="icon-btn" title="Mute" aria-label="Mute microphone" aria-pressed="false">🎙️</button>
+        <button id="deafenBtn" class="icon-btn" title="Deafen" aria-label="Deafen" aria-pressed="false">🎧</button>
         <button id="logoutBtn" class="icon-btn" title="Leave" aria-label="Leave chat">⎋</button>
       </div>
     </aside>
@@ -83,8 +99,10 @@
   </div>
 
   <div id="toast" class="toast" hidden></div>
+  <div id="voiceAudio" hidden></div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="app.js"></script>
+  <script src="voice.js"></script>
 </body>
 </html>
