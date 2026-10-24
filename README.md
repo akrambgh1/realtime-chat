@@ -4,6 +4,8 @@ Chatter is a real-time chat app with rooms, live online users, typing indicators
 
 Built with **Node.js**, **Express** and **Socket.io** on the server, and **vanilla JavaScript** (no framework) on the client.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/akrambgh1/realtime-chat)
+
 ## ✨ Features
 
 - ⚡ **Instant messaging** over WebSockets (Socket.io)
